@@ -74,7 +74,9 @@ $ sudo apt install unattended-upgrades
 $ sudo apt-get dist-upgrade
 
 3. Set up the firewall and security settings
-$ sudo nano /etc/ssh/sshd_config and change port from 22 to 2200
+$ sudo nano /etc/ssh/sshd_config 
+change port from 22 to 2200 
+set PermitRootLogin from prohibit-password to No
 $ sudo nano /etc/init.d/sshd restart
 $ sudo ufw allow 2200/tcp
 $ sudo ufw allow 80/tcp
