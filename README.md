@@ -179,7 +179,6 @@ application.secret_key = 'your_secret_key'
 $ sudo nano /etc/apache2/sites-available/catalog.conf
 <VirtualHost *:80>
     ServerName 18.188.132.132
-    ServerAlias http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/
     ServerAdmin admin@18.188.132.132
     DaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
     WSGIProcessGroup catalog
