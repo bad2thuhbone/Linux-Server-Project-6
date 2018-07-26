@@ -5,7 +5,8 @@ Setup up Linux server for the sixth project for the Udacity Full Stack Nano Degr
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Host Name: http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/
+EC Host Name: http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/
+Host Name: http://18.188.132.132/
 IP Address: 18.188.132.132
 
 ### google OAuth instructions
@@ -144,6 +145,7 @@ sys.path.insert(0, "/var/www/catalog/")
 
 from catalog import app as application
 application.secret_key = 'your_secret_key'/
+$ sudo a2enmod wsgi
 $ sudo service apache2 start
 $ sudo service apache2 restart
 $ mv application.py __init.py__
@@ -179,7 +181,7 @@ $ sudo nano /etc/apache2/sites-available/catalog.conf
     ServerName 18.188.132.132
     ServerAlias http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/
     ServerAdmin admin@18.188.132.132
-    WSGIDaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
+    DaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
     WSGIProcessGroup catalog
     WSGIScriptAlias / /var/www/catalog/catalog.wsgi
     <Directory /var/www/catalog/catalog/>
