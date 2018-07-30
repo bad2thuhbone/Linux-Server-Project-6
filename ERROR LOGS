@@ -2,8 +2,8 @@
 [Sun Jul 29 06:25:02.130221 2018] [wsgi:warn] [pid 2952:tid 140085249058688] mod_wsgi: Runtime using Python/2.7.12.
 [Sun Jul 29 06:25:02.130532 2018] [mpm_event:notice] [pid 2952:tid 140085249058688] AH00489: Apache/2.4.18 (Ubuntu) mod_wsgi/4.3.0 Python/2.7.12 configured -- resuming nor$
 [Sun Jul 29 06:25:02.130548 2018] [core:notice] [pid 2952:tid 140085249058688] AH00094: Command line: '/usr/sbin/apache2'
-[Sun Jul 29 07:27:57.205611 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837] mod_wsgi (pid=19027): Target WSGI script '/var/www/catalog/catal$
-[Sun Jul 29 07:27:57.205635 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837] mod_wsgi (pid=19027): Exception occurred processing WSGI script $
+[Sun Jul 29 07:27:57.205611 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837] mod_wsgi (pid=19027): Target WSGI script '/var/www/catalog/catalog.wsgi' cannot be loaded as Python module.
+[Sun Jul 29 07:27:57.205635 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837] mod_wsgi (pid=19027): Exception occurred processing WSGI script '/var/www/catalog/catalog.wsgi'.
 [Sun Jul 29 07:27:57.205658 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837] Traceback (most recent call last):
 [Sun Jul 29 07:27:57.205684 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/var/www/catalog/catalog.wsgi", line 7, in <module>
 [Sun Jul 29 07:27:57.205728 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     from catalog import app as application
