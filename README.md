@@ -135,16 +135,6 @@ $ sudo chown -R grader:grader catalog
 $ cd catalog
 $ git clone https://github.com/bad2thuhbone/Catalog catalog
 $ cd catalog
-Created a .wsgi file in /var/www/catalog
-$ sudo nano catalog.wsgi
-#!/usr/bin/python
-import sys
-import logging
-logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0, "/var/www/catalog/")
-
-from catalog import app as application
-application.secret_key = 'your_secret_key'/
 $ sudo a2enmod wsgi
 $ sudo service apache2 start
 $ sudo service apache2 restart
@@ -165,6 +155,7 @@ CLIENT_ID = json.loads( open('/var/www/catalog/catalog/client_secrets.json', 'r'
 Ensure to look through __ini__.py for every instance of this change and replace as stated. 
 Also replace if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run(0.0.0.0, port=5000 
 with if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run()
+
 9. Create catalog.wsgi file
 $ sudo nano catalog.wsgi
 #!/usr/bin/python
@@ -175,6 +166,7 @@ sys.path.insert(0, "/var/www/catalog/")
 
 from catalog import app as application
 application.secret_key = 'your_secret_key'
+
 10. Configure and enable virtual host N.B.
 $ sudo nano /etc/apache2/sites-available/catalog.conf
 <VirtualHost *:80>
