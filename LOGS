@@ -1,0 +1,52 @@
+[Sun Jul 29 06:25:02.130205 2018] [wsgi:warn] [pid 2952:tid 140085249058688] mod_wsgi: Compiled for Python/2.7.11.
+[Sun Jul 29 06:25:02.130221 2018] [wsgi:warn] [pid 2952:tid 140085249058688] mod_wsgi: Runtime using Python/2.7.12.
+[Sun Jul 29 06:25:02.130532 2018] [mpm_event:notice] [pid 2952:tid 140085249058688] AH00489: Apache/2.4.18 (Ubuntu) mod_wsgi/4.3.0 Python/2.7.12 configured -- resuming nor$
+[Sun Jul 29 06:25:02.130548 2018] [core:notice] [pid 2952:tid 140085249058688] AH00094: Command line: '/usr/sbin/apache2'
+[Sun Jul 29 07:27:57.205611 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837] mod_wsgi (pid=19027): Target WSGI script '/var/www/catalog/catal$
+[Sun Jul 29 07:27:57.205635 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837] mod_wsgi (pid=19027): Exception occurred processing WSGI script $
+[Sun Jul 29 07:27:57.205658 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837] Traceback (most recent call last):
+[Sun Jul 29 07:27:57.205684 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/var/www/catalog/catalog.wsgi", line 7, in <module>
+[Sun Jul 29 07:27:57.205728 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     from catalog import app as application
+[Sun Jul 29 07:27:57.205738 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/var/www/catalog/catalog/__init__.py", line 17, in <modu$
+[Sun Jul 29 07:27:57.205833 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     from database_setup import Base, Category, CatItem, User
+[Sun Jul 29 07:27:57.205841 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/var/www/catalog/catalog/database_setup.py", line 67, in$
+[Sun Jul 29 07:27:57.205878 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     Base.metadata.create_all(engine)
+[Sun Jul 29 07:27:57.205885 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/sc$
+[Sun Jul 29 07:27:57.206516 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     tables=tables)
+[Sun Jul 29 07:27:57.206526 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine$
+[Sun Jul 29 07:27:57.206880 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     with self._optional_conn_ctx_manager(connection) as conn:
+[Sun Jul 29 07:27:57.206891 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/lib/python2.7/contextlib.py", line 17, in __enter__
+[Sun Jul 29 07:27:57.206940 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     return self.gen.next()
+[Sun Jul 29 07:27:57.206947 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine$
+[Sun Jul 29 07:27:57.206960 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     with self.contextual_connect() as conn:
+[Sun Jul 29 07:27:57.206965 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine$
+[Sun Jul 29 07:27:57.206974 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     self._wrap_pool_connect(self.pool.connect, None),
+[Sun Jul 29 07:27:57.206979 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine$
+[Sun Jul 29 07:27:57.206986 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     e, dialect, self)
+[Sun Jul 29 07:27:57.206998 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine$
+[Sun Jul 29 07:27:57.207007 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     exc_info
+[Sun Jul 29 07:27:57.207012 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/c$
+[Sun Jul 29 07:27:57.207067 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[Sun Jul 29 07:27:57.207074 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine$
+[Sun Jul 29 07:27:57.207083 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     return fn()
+[Sun Jul 29 07:27:57.207088 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.p$
+[Sun Jul 29 07:27:57.207314 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     return _ConnectionFairy._checkout(self)
+[Sun Jul 29 07:27:57.207322 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.p$
+[Sun Jul 29 07:27:57.207331 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     fairy = _ConnectionRecord.checkout(pool)
+[Sun Jul 29 07:27:57.207336 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.p$
+[Sun Jul 29 07:27:57.207344 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     rec = pool._do_get()
+[Sun Jul 29 07:27:57.207348 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.p$
+[Sun Jul 29 07:27:57.207355 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     return self._create_connection()
+[Sun Jul 29 07:27:57.207359 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.p$
+[Sun Jul 29 07:27:57.207366 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     return _ConnectionRecord(self)
+[Sun Jul 29 07:27:57.207370 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.p$
+[Sun Jul 29 07:27:57.207377 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     self.__connect(first_connect_check=True)
+[Sun Jul 29 07:27:57.207370 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.p$
+[Sun Jul 29 07:27:57.207377 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     self.__connect(first_connect_check=True)
+[Sun Jul 29 07:27:57.207381 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.p$
+[Sun Jul 29 07:27:57.207388 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     connection = pool._invoke_creator(self)
+[Sun Jul 29 07:27:57.207393 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine$
+[Sun Jul 29 07:27:57.207464 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     return dialect.connect(*cargs, **cparams)
+[Sun Jul 29 07:27:57.207472 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine$
+[Sun Jul 29 07:27:57.207721 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837]     return self.dbapi.connect(*cargs, **cparams)
+[Sun Jul 29 07:27:57.207753 2018] [wsgi:error] [pid 19027:tid 140085123831552] [remote 183.131.83.5:34837] OperationalError: (sqlite3.OperationalError) unable to open data$
