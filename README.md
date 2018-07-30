@@ -72,6 +72,7 @@ $ sudo pip install virtualenv
 $ sudo apt-get install python3-venv
 $ sudo apt-get install libpq-dev python-dev
 $ sudo apt install unattended-upgrades
+$ sudo dpkg-reconfigure --priority=low unattended-upgrades
 $ sudo apt-get dist-upgrade
 
 3. Set up the firewall and security settings
