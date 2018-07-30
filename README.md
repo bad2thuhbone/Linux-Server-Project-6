@@ -48,6 +48,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     * Give instance a hostname and click connect ssh
     * Networking tab under firewall add UDP 123 and TCP 2200
     * Download .pem public key file
+    
 2. Set up the server by downloading all needed files for application to run
     $ sudo apt-get update
     $ sudo apt-get upgrade
@@ -75,6 +76,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo apt install unattended-upgrades
     $ sudo dpkg-reconfigure --priority=low unattended-upgrades
     $ sudo apt-get dist-upgrade
+    
 3. Set up the firewall and security settings
     $ sudo nano /etc/ssh/sshd_config 
     change port from 22 to 2200 
@@ -89,14 +91,17 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo ufw added
     $ sudo ufw enable
     $ sudo ufw status
+    
 4. Set up the time zone
     $ sudo dpkg-reconfigure tzdata (configure time zone)
     $ sudo reboot
 5. Setting up ssh to the amazon server
+
     Launch a Unix/Linux like terminal (e.g. Git Bash for Windows, Terminal for Mac)
     $ mkdir .ssh
     Put the pem file in the .ssh directory, in this case it's named PrivateKey.pem
     $ ssh -i PrivateKey.pem -p 2200 ubuntu@18.188.132.132
+    
 6. Set up the user grader and give admin privs (password not shown)
     $ sudo su -
     $ sudo adduser grader
@@ -137,6 +142,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo service apache2 start
     $ sudo service apache2 restart
     $ mv application.py __init.py__
+    
 7. Install virtual environment
     $ sudo virtualenv venv
     $ source venv/bin/activate
@@ -145,12 +151,14 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo pip install Flask
     $ sudo pip install bleach httplib2 request oauth2client sqlalchemy
     $ sudo python database_setup.py
+    
 8. Use the nano __init__.py command to change the client_secrets.json line 
     to /var/www/catalog/catalog/client_secrets.json as follows 
     CLIENT_ID = json.loads( open('/var/www/catalog/catalog/client_secrets.json', 'r').read())['web']['client_id'] 
     Ensure to look through __ini__.py for every instance of this change and replace as stated. 
     Also replace if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run(0.0.0.0, port=5000 
     with if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run()
+    
 9. Create catalog.wsgi file
     $ sudo nano catalog.wsgi
     #!/usr/bin/python
@@ -161,6 +169,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
 
     from catalog import app as application
     application.secret_key = 'your_secret_key'
+    
 10. Configure and enable virtual host N.B.
     $ sudo nano /etc/apache2/sites-available/catalog.conf
     <VirtualHost *:80>
