@@ -6,10 +6,12 @@ Setup up Linux server for the sixth project for the Udacity Full Stack Nano Degr
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 EC Host Name: http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/
+
 Host Name: http://18.188.132.132/
+
 IP Address: 18.188.132.132
 
-### google OAuth instructions
+## google OAuth instructions
 
 ```
 1. Go to [Google Devloper Console](https://console.developers.google.com/)
@@ -27,170 +29,161 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
 13. Under OAuth 2.0 Client IDs click download JSON
 14. Rename JSON file to client_secrets.json and place file in /vagrant/catalog
 ```
-### log into server
+## log into server
 ```
 1. Change director to where pem file is saved
 2. open up terminal (git hub for windows users)
 3. $ ssh -i PrivateKey.pem -p 2200 grader@18.188.132.132
 ```
 
-### walkthrough of Amazon Webservice and server configuration changes
+## walkthrough of Amazon Webservice and server configuration changes
 
 ```
 1. Setuping up LightSail server
-* [Amazon LightSail](https://lightsail.aws.amazon.com)
-* Sign in or Sign up if prompted
-* Click Create an instance
-* Go to OS only and click ubantu
-* Pick instance plan
-* Give instance a hostname and click connect ssh
-* Networking tab under firewall add UDP 123 and TCP 2200
-* Download .pem public key file
-
+    * [Amazon LightSail](https://lightsail.aws.amazon.com)
+    * Sign in or Sign up if prompted
+    * Click Create an instance
+    * Go to OS only and click ubantu
+    * Pick instance plan
+    * Give instance a hostname and click connect ssh
+    * Networking tab under firewall add UDP 123 and TCP 2200
+    * Download .pem public key file
 2. Set up the server by downloading all needed files for application to run
-$ sudo apt-get update
-$ sudo apt-get upgrade
-$ sudo do-release-upgrade
-$ sudo apt-get install finger
-$ sudo apt-get install apache2
-$ sudo apt-get install postgresql
-$ sudo apt-get install libapache2-mod-wsgi
-$ sudo apt autoremove
-$ sudo apt-get install git
-$ sudo apt-get install python-pip
-$ sudo pip install Flask
-$ sudo pip install --upgrade pip
-$ sudo pip install --upgrade google-api-python-client
-$ sudo pip install --upgrade google-auth google-auth-oauthlib google-auth-httplib2
-$ sudo pip install --upgrade flask
-$ sudo pip install --upgrade requests
-$ sudo pip install sqlalchemy
-$ sudo apt install upstart
-$ sudo apt-get install postgresql postgresql-contrib
-$ sudo pip install --upgrade pip
-$ sudo pip install virtualenv
-$ sudo apt-get install python3-venv
-$ sudo apt-get install libpq-dev python-dev
-$ sudo apt install unattended-upgrades
-$ sudo dpkg-reconfigure --priority=low unattended-upgrades
-$ sudo apt-get dist-upgrade
-
+    $ sudo apt-get update
+    $ sudo apt-get upgrade
+    $ sudo do-release-upgrade
+    $ sudo apt-get install finger
+    $ sudo apt-get install apache2
+    $ sudo apt-get install postgresql
+    $ sudo apt-get install libapache2-mod-wsgi
+    $ sudo apt autoremove
+    $ sudo apt-get install git
+    $ sudo apt-get install python-pip
+    $ sudo pip install Flask
+    $ sudo pip install --upgrade pip
+    $ sudo pip install --upgrade google-api-python-client
+    $ sudo pip install --upgrade google-auth google-auth-oauthlib google-auth-httplib2
+    $ sudo pip install --upgrade flask
+    $ sudo pip install --upgrade requests
+    $ sudo pip install sqlalchemy
+    $ sudo apt install upstart
+    $ sudo apt-get install postgresql postgresql-contrib
+    $ sudo pip install --upgrade pip
+    $ sudo pip install virtualenv
+    $ sudo apt-get install python3-venv
+    $ sudo apt-get install libpq-dev python-dev
+    $ sudo apt install unattended-upgrades
+    $ sudo dpkg-reconfigure --priority=low unattended-upgrades
+    $ sudo apt-get dist-upgrade
 3. Set up the firewall and security settings
-$ sudo nano /etc/ssh/sshd_config 
-change port from 22 to 2200 
-set PermitRootLogin from prohibit-password to No
-$ sudo nano /etc/init.d/sshd restart
-$ sudo ufw allow 2200/tcp
-$ sudo ufw allow 80/tcp
-$ sudo ufw allow 123/udp
-$ sudo ufw default deny incoming
-$ sudo ufw default allow outgoing
-$ sudo ufw allow ntp
-$ sudo ufw added
-$ sudo ufw enable
-$ sudo ufw status
-
+    $ sudo nano /etc/ssh/sshd_config 
+    change port from 22 to 2200 
+    set PermitRootLogin from prohibit-password to No
+    $ sudo nano /etc/init.d/sshd restart
+    $ sudo ufw allow 2200/tcp
+    $ sudo ufw allow 80/tcp
+    $ sudo ufw allow 123/udp
+    $ sudo ufw default deny incoming
+    $ sudo ufw default allow outgoing
+    $ sudo ufw allow ntp
+    $ sudo ufw added
+    $ sudo ufw enable
+    $ sudo ufw status
 4. Set up the time zone
-$ sudo dpkg-reconfigure tzdata (configure time zone)
-$ sudo reboot
-
+    $ sudo dpkg-reconfigure tzdata (configure time zone)
+    $ sudo reboot
 5. Setting up ssh to the amazon server
-Launch a Unix/Linux like terminal (e.g. Git Bash for Windows, Terminal for Mac)
-$ mkdir .ssh
-Put the pem file in the .ssh directory, in this case it's named PrivateKey.pem
-$ ssh -i PrivateKey.pem -p 2200 ubuntu@18.188.132.132
-
+    Launch a Unix/Linux like terminal (e.g. Git Bash for Windows, Terminal for Mac)
+    $ mkdir .ssh
+    Put the pem file in the .ssh directory, in this case it's named PrivateKey.pem
+    $ ssh -i PrivateKey.pem -p 2200 ubuntu@18.188.132.132
 6. Set up the user grader and give admin privs (password not shown)
-$ sudo su -
-$ sudo adduser grader
-$ sudo visudo
-$ append grader	ALL=(ALL:ALL) 
-Create a new file in the sudoers directory: 
-$ sudo nano /etc/sudoers.d/grader. 
-Give grader the super permisssion grader ALL=(ALL:ALL) ALL
-set up authorized key
-$ sudo chown grader:grader /home/grader/.ssh
-$ sudo chmod 700 /home/grader/.ssh
-$ sudo cp /root/.ssh/authorized_keys /home/grader/.ssh/
-$ sudo chown grader:grader /home/grader/.ssh/authorized_keys
-$ sudo chmod 644 /home/grader/.ssh/authorized_keys
-remove everything before ssh-rsa so grader isn't stopped like root
-$ sudo nano /home/grader/.ssh/authorized_keys
-$ su - grader
-$ mkdir .ssh
-Set up the database
-$ sudo -u postgres createuser -P catalog
-$ sudo -u postgres createdb -O catalog catalog
-$ sudo -u postgres -i
-$ psql
-# \c catalog
-# REVOKE ALL ON SCHEMA public FROM public;
-# GRANT ALL ON SCHEMA public TO catalog;
-Review all the privs for the database
-# \du
-#\q
-$ exit
-$ cd /var/www
-$ sudo mkdir catalog
-$ sudo chown -R grader:grader catalog
-$ cd catalog
-$ git clone https://github.com/bad2thuhbone/Catalog catalog
-$ cd catalog
-$ sudo a2enmod wsgi
-$ sudo service apache2 start
-$ sudo service apache2 restart
-$ mv application.py __init.py__
-
+    $ sudo su -
+    $ sudo adduser grader
+    $ sudo visudo
+    $ append grader	ALL=(ALL:ALL) 
+    Create a new file in the sudoers directory: 
+    $ sudo nano /etc/sudoers.d/grader. 
+    Give grader the super permisssion grader ALL=(ALL:ALL) ALL
+    set up authorized key
+    $ sudo chown grader:grader /home/grader/.ssh
+    $ sudo chmod 700 /home/grader/.ssh
+    $ sudo cp /root/.ssh/authorized_keys /home/grader/.ssh/
+    $ sudo chown grader:grader /home/grader/.ssh/authorized_keys
+    $ sudo chmod 644 /home/grader/.ssh/authorized_keys
+    remove everything before ssh-rsa so grader isn't stopped like root
+    $ sudo nano /home/grader/.ssh/authorized_keys
+    $ su - grader
+    $ mkdir .ssh
+    Set up the database
+    $ sudo -u postgres createuser -P catalog
+    $ sudo -u postgres createdb -O catalog catalog
+    $ sudo -u postgres -i
+    $ psql
+    # \c catalog
+    # REVOKE ALL ON SCHEMA public FROM public;
+    # GRANT ALL ON SCHEMA public TO catalog;
+    Review all the privs for the database
+    # \du
+    #\q
+    $ exit
+    $ cd /var/www
+    $ sudo mkdir catalog
+    $ sudo chown -R grader:grader catalog
+    $ cd catalog
+    $ git clone https://github.com/bad2thuhbone/Catalog catalog
+    $ cd catalog
+    $ sudo a2enmod wsgi
+    $ sudo service apache2 start
+    $ sudo service apache2 restart
+    $ mv application.py __init.py__
 7. Install virtual environment
-$ sudo virtualenv venv
-$ source venv/bin/activate
-$ python3 -m venv env
-$ sudo chmod -R 777 venv
-$ sudo pip install Flask
-$ sudo pip install bleach httplib2 request oauth2client sqlalchemy
-$ sudo python database_setup.py
-
+    $ sudo virtualenv venv
+    $ source venv/bin/activate
+    $ python3 -m venv env
+    $ sudo chmod -R 777 venv
+    $ sudo pip install Flask
+    $ sudo pip install bleach httplib2 request oauth2client sqlalchemy
+    $ sudo python database_setup.py
 8. Use the nano __init__.py command to change the client_secrets.json line 
-to /var/www/catalog/catalog/client_secrets.json as follows 
-CLIENT_ID = json.loads( open('/var/www/catalog/catalog/client_secrets.json', 'r').read())['web']['client_id'] 
-Ensure to look through __ini__.py for every instance of this change and replace as stated. 
-Also replace if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run(0.0.0.0, port=5000 
-with if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run()
-
+    to /var/www/catalog/catalog/client_secrets.json as follows 
+    CLIENT_ID = json.loads( open('/var/www/catalog/catalog/client_secrets.json', 'r').read())['web']['client_id'] 
+    Ensure to look through __ini__.py for every instance of this change and replace as stated. 
+    Also replace if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run(0.0.0.0, port=5000 
+    with if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run()
 9. Create catalog.wsgi file
-$ sudo nano catalog.wsgi
-#!/usr/bin/python
-import sys
-import logging
-logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0, "/var/www/catalog/")
+    $ sudo nano catalog.wsgi
+    #!/usr/bin/python
+    import sys
+    import logging
+    logging.basicConfig(stream=sys.stderr)
+    sys.path.insert(0, "/var/www/catalog/")
 
-from catalog import app as application
-application.secret_key = 'your_secret_key'
-
+    from catalog import app as application
+    application.secret_key = 'your_secret_key'
 10. Configure and enable virtual host N.B.
-$ sudo nano /etc/apache2/sites-available/catalog.conf
-<VirtualHost *:80>
-    ServerName 18.188.132.132
-    ServerAdmin admin@18.188.132.132
-    ServerAlias ec2-18-188-132-132.us-east-2.compute.amazonaws.com
-    DaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
-    WSGIProcessGroup catalog
-    WSGIScriptAlias / /var/www/catalog/catalog.wsgi
-    <Directory /var/www/catalog/catalog/>
-        Order allow,deny
-        Allow from all
-    </Directory>
-    Alias /static /var/www/catalog/catalog/static
-    <Directory /var/www/catalog/catalog/static/>
-        Order allow,deny
-        Allow from all
-    </Directory>
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    LogLevel warn
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-$ sudo service apache2 restart
+    $ sudo nano /etc/apache2/sites-available/catalog.conf
+    <VirtualHost *:80>
+        ServerName 18.188.132.132
+        ServerAdmin admin@18.188.132.132
+        ServerAlias ec2-18-188-132-132.us-east-2.compute.amazonaws.com
+        DaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
+        WSGIProcessGroup catalog
+        WSGIScriptAlias / /var/www/catalog/catalog.wsgi
+        <Directory /var/www/catalog/catalog/>
+            Order allow,deny
+            Allow from all
+        </Directory>
+        Alias /static /var/www/catalog/catalog/static
+        <Directory /var/www/catalog/catalog/static/>
+            Order allow,deny
+            Allow from all
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </VirtualHost>
+    $ sudo service apache2 restart
 
 ```
 
