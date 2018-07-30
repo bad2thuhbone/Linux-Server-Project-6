@@ -180,6 +180,7 @@ $ sudo nano /etc/apache2/sites-available/catalog.conf
 <VirtualHost *:80>
     ServerName 18.188.132.132
     ServerAdmin admin@18.188.132.132
+    ServerAlias ec2-18-188-132-132.us-east-2.compute.amazonaws.com
     DaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
     WSGIProcessGroup catalog
     WSGIScriptAlias / /var/www/catalog/catalog.wsgi
