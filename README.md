@@ -173,7 +173,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     from catalog import app as application
     application.secret_key = 'your_secret_key'
     
-12. Configure and enable virtual host N.B.
+12. Configure and enable virtual host
     $ sudo nano /etc/apache2/sites-available/catalog.conf
     <VirtualHost *:80>
         ServerName 18.188.132.132
