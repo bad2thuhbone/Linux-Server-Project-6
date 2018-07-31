@@ -95,8 +95,8 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
 4. Set up the time zone
     $ sudo dpkg-reconfigure tzdata (configure time zone)
     $ sudo reboot
+    
 5. Setting up ssh to the amazon server
-
     Launch a Unix/Linux like terminal (e.g. Git Bash for Windows, Terminal for Mac)
     $ mkdir .ssh
     Put the pem file in the .ssh directory, in this case it's named PrivateKey.pem
@@ -120,7 +120,8 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo nano /home/grader/.ssh/authorized_keys
     $ su - grader
     $ mkdir .ssh
-    Set up the database
+    
+7. Set up the database
     $ sudo -u postgres createuser -P catalog
     $ sudo -u postgres createdb -O catalog catalog
     $ sudo -u postgres -i
@@ -128,7 +129,8 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     # \c catalog
     # REVOKE ALL ON SCHEMA public FROM public;
     # GRANT ALL ON SCHEMA public TO catalog;
-    Review all the privs for the database
+
+8. Review all the privs for the database
     # \du
     #\q
     $ exit
@@ -143,7 +145,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo service apache2 restart
     $ mv application.py __init.py__
     
-7. Install virtual environment
+9. Install virtual environment
     $ sudo virtualenv venv
     $ source venv/bin/activate
     $ python3 -m venv env
@@ -152,15 +154,15 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo pip install bleach httplib2 request oauth2client sqlalchemy
     $ sudo python database_setup.py
     
-8. Use the nano __init__.py command to change the client_secrets.json line 
+10. Use the nano __init__.py command to change the client_secrets.json line 
     to /var/www/catalog/catalog/client_secrets.json as follows 
     CLIENT_ID = json.loads( open('/var/www/catalog/catalog/client_secrets.json', 'r').read())['web']['client_id'] 
     Ensure to look through __ini__.py for every instance of this change and replace as stated. 
     Also replace if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run(0.0.0.0, port=5000 
     with if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run()
     
-9. Create catalog.wsgi file
-    $ sudo nano catalog.wsgi
+11. Create catalog.wsgi file
+    $ sudo nano /var/www/catalog/catalog.wsgi
     #!/usr/bin/python
     import sys
     import logging
@@ -170,7 +172,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     from catalog import app as application
     application.secret_key = 'your_secret_key'
     
-10. Configure and enable virtual host N.B.
+12. Configure and enable virtual host N.B.
     $ sudo nano /etc/apache2/sites-available/catalog.conf
     <VirtualHost *:80>
         ServerName 18.188.132.132
