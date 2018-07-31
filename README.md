@@ -221,3 +221,4 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
 * [Amazon ssh Windows](https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-ssh-windows.html)
 * [SteveWooding](https://github.com/SteveWooding/fullstack-nanodegree-linux-server-config)
 * [Kundan Singh](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps) How To Deploy a Flask Application on an Ubuntu VPS
+* [sqlite error](http://fredericiana.com/2014/11/29/sqlite-error-open-database-file/)
