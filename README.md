@@ -153,6 +153,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo pip install Flask
     $ sudo pip install bleach httplib2 request oauth2client sqlalchemy
     $ sudo python database_setup.py
+    $ sudo python categories_setup.py
     
 10. Use the nano __init__.py command to change the client_secrets.json line 
     to /var/www/catalog/catalog/client_secrets.json as follows 
