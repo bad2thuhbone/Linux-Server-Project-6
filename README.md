@@ -144,8 +144,15 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo service apache2 start
     $ sudo service apache2 restart
     $ mv application.py __init.py__
+
+9. Change the database engine sqlite has permissions issues and its easier to use postgres
+   change all engine to engine = create_engine('postgresql://catalog:[your password]@localhost/catalog) e.g engine =  
+   create_engine('postgresql://catalog:catalog@localhost/catalog') Base.metadata.bind = engine
+   $ sudo nano database_setup.py
+   $ sudo nano categories_setup.py
+   $ sudo nano __init__.py
     
-9. Install virtual environment
+10. Install virtual environment
     $ sudo virtualenv venv
     $ source venv/bin/activate
     $ python3 -m venv env
@@ -155,14 +162,14 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo python database_setup.py
     $ sudo python categories_setup.py
     
-10. Use the nano __init__.py command to change the client_secrets.json line 
+11. Use the nano __init__.py command to change the client_secrets.json line 
     to /var/www/catalog/catalog/client_secrets.json as follows 
     CLIENT_ID = json.loads( open('/var/www/catalog/catalog/client_secrets.json', 'r').read())['web']['client_id'] 
     Ensure to look through __ini__.py for every instance of this change and replace as stated. 
     Also replace if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run(0.0.0.0, port=5000 
     with if __name__ == '__main__': app.secret_key = 'your_secret_key' app.debug = True app.run()
     
-11. Create catalog.wsgi file
+12. Create catalog.wsgi file
     $ sudo nano /var/www/catalog/catalog.wsgi
     #!/usr/bin/python
     import sys
@@ -173,7 +180,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     from catalog import app as application
     application.secret_key = 'your_secret_key'
     
-12. Configure and enable virtual host
+13. Configure and enable virtual host
     $ sudo nano /etc/apache2/sites-available/catalog.conf
    <VirtualHost *:80>
          ServerName 18.188.132.132
