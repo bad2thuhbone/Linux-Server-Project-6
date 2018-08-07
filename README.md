@@ -159,6 +159,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ sudo chmod -R 777 venv
     $ sudo pip install Flask
     $ sudo pip install bleach httplib2 request oauth2client sqlalchemy
+    $ pip install psycopg2
     $ sudo python database_setup.py
     $ sudo python categories_setup.py
     
