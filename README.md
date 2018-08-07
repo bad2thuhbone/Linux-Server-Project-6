@@ -146,7 +146,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ mv application.py __init.py__
 
 9. Change the database engine sqlite has permissions issues and its easier to use postgres
-   change sqlite engine to postgresql (was running into permission issues) 
+   change sqlite engine to postgresql (was running into permission issues with sqlite, took me weeks to figure out) 
    engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
    $ sudo nano database_setup.py
    $ sudo nano categories_setup.py
