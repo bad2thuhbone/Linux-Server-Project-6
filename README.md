@@ -162,6 +162,7 @@ and http://ec2-18-188-132-132.us-east-2.compute.amazonaws.com/gconnect
     $ pip install psycopg2
     $ sudo python database_setup.py
     $ sudo python categories_setup.py
+    $ sudo a2ensite catalog
     
 11. Use the nano __init__.py command to change the client_secrets.json line 
     to /var/www/catalog/catalog/client_secrets.json as follows 
